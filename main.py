@@ -1,15 +1,15 @@
 from dotenv import load_dotenv
-from llama_index.llms.openai import OpenAI
-from llama_index.core.agent.workflow.function_agent import FunctionAgent
+from dishka import make_container
 
-from tools import tools
+from agent_reviewer.di import ReviewerProvider
+from di import RootProvider
 
-load_dotenv()
 
-llm = OpenAI(model="gpt-4o-mini")
+def main():
+    load_dotenv()
 
-workflow = FunctionAgent(
-    llm=llm,
-    system_prompt="You are an agent that can use tools to parse swagger into MCP (Model Context Protocol) format.",
-    tools=tools,
-)
+    make_container(RootProvider(), ReviewerProvider())
+
+
+if __name__ == "__main__":
+    main()

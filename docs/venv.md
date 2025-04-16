@@ -25,3 +25,9 @@ source venv/bin/activate
 ```bash
 pip install -r requirements.txt
 ```
+
+5. Generate requirements
+```
+pip install pigar
+pigar generate
+```
